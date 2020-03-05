@@ -13,7 +13,7 @@
  * Your Java namespace - change it to fit your package name, otherwise
  * the JVM is not able to load your functions!
  */
-#define FUNCNAME(x)   Java_com_Aladdin_##x
+#define FUNCNAME(x)   Java_com_HaspDemo_##x
 
 /*
  * Class:     Hasp

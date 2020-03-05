@@ -45,9 +45,15 @@ android {
         }
     }
 
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/jni/Android.mk'
+//    externalNativeBuild {
+//        ndkBuild {
+//            path 'src/main/jni/Android.mk'
+//        }
+//    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/libs']
         }
     }
 }

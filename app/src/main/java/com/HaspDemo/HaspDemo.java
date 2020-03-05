@@ -243,11 +243,11 @@ public class HaspDemo extends Activity
             break;
         }
 
-        if ( status != HaspStatus.HASP_STATUS_OK )
-        {
-            textView.setText(text);            
-            return;
-        }
+//        if ( status != HaspStatus.HASP_STATUS_OK )
+//        {
+//            textView.setText(text);
+//            return;
+//        }
 
         /**********************************************************************
          * hasp_login
