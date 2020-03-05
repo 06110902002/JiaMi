@@ -12,6 +12,7 @@
 /*
  * Your Java namespace - change it to fit your package name, otherwise
  * the JVM is not able to load your functions!
+ * 下面的函数头需要根据 自己的包名进行生成 即 Java_com_HaspDemo_  需要对应自己项目包名
  */
 #define FUNCNAME(x)   Java_com_HaspDemo_##x
 
