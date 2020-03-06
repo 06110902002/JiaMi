@@ -184,8 +184,86 @@ public class HaspDemo extends Activity
                 startActivity(intent);
             }            
         });
+        EventClick onClick = new EventClick();
+        findViewById(R.id.btn_getdevice_info).setOnClickListener(onClick);
+        findViewById(R.id.btn_getdevice_info2).setOnClickListener(onClick);
+        findViewById(R.id.btn_read_info).setOnClickListener(onClick);
+        findViewById(R.id.btn_write_info).setOnClickListener(onClick);
 
     }
+
+    private class EventClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()){
+                case R.id.btn_getdevice_info:
+                    getInfo();
+                    break;
+                case R.id.btn_getdevice_info2:
+                    getInfo();
+                    break;
+
+                case R.id.btn_read_info:
+                    read();
+                    break;
+
+                case R.id.btn_write_info:
+                    write();
+                    break;
+            }
+        }
+    }
+
+    private void getInfo(){
+        Hasp hasp = new Hasp(Hasp.HASP_DEFAULT_FID);
+        hasp.login(vendorCode);
+        int status = hasp.getLastError();
+        if(status == HaspStatus.HASP_STATUS_OK){
+            String infos = hasp.getInfo(scope, accessibleKeys, vendorCode);
+            System.out.println("218-----------getInfo:"+infos);
+        }
+    }
+
+    private void read(){
+        Hasp hasp = new Hasp(Hasp.HASP_DEFAULT_FID);
+        hasp.login(vendorCode);
+        int status = hasp.getLastError();
+        if(status == HaspStatus.HASP_STATUS_OK){
+            String infos = hasp.getInfo(scope, accessibleKeys, vendorCode);
+            System.out.println("218-----------getInfo:"+infos);
+
+            byte[] membuffer = new byte[DEMO_MEMBUFFER_SIZE];
+            System.out.println("354------------:"+membuffer.toString());
+            hasp.read(Hasp.HASP_FILEID_RW, 0, membuffer);
+            status = hasp.getLastError();
+            if(status == HaspStatus.HASP_STATUS_OK){
+
+                if(infos.equals(membuffer.toString())){ //已经授权
+
+                }
+
+            }
+        }
+    }
+
+    private void write(){
+        Hasp hasp = new Hasp(Hasp.HASP_DEFAULT_FID);
+        hasp.login(vendorCode);
+        int status = hasp.getLastError();
+        if(status == HaspStatus.HASP_STATUS_OK){
+            String infos = hasp.getInfo(scope, accessibleKeys, vendorCode);
+            byte[] membuffer = new byte[infos.getBytes().length];
+            hasp.write(Hasp.HASP_FILEID_RW, 0, membuffer);
+            status = hasp.getLastError();
+            if(status == HaspStatus.HASP_STATUS_OK){ //写入成功
+
+            }
+        }
+
+    }
+
 
     public void demo()
     {
@@ -277,10 +355,10 @@ public class HaspDemo extends Activity
             default:
                 text += "failed with status:" + status;
         }
-
+        System.out.println("280-------login:"+text);
         if ( status != HaspStatus.HASP_STATUS_OK )
         {
-            textView.setText(text);            
+            textView.setText(text);
             return;
         }
 
@@ -351,7 +429,7 @@ public class HaspDemo extends Activity
                 fsize = DEMO_MEMBUFFER_SIZE;
 
             byte[] membuffer = new byte[DEMO_MEMBUFFER_SIZE];
-
+            System.out.println("354------------:"+membuffer.toString());
             text += "\nReading : ";
             hasp.read(Hasp.HASP_FILEID_RW, 0, membuffer);
             status = hasp.getLastError();

@@ -35,9 +35,51 @@
 	<TextView
 	    android:id="@+id/tv"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
+	    android:layout_height="wrap_content"
 	    android:layout_below="@+id/demo"
 	    android:layout_marginLeft="10dp"
 	    android:layout_marginTop="30dp" />
+
+	<LinearLayout
+		android:id="@+id/write"
+		android:layout_below="@+id/tv"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/btn_getdevice_info"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="获取设备信息"/>
+
+		<Button
+			android:id="@+id/btn_write_info"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="将设备信息写入硬件"/>
+
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_below="@+id/write"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/btn_getdevice_info2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="获取设备信息_读"/>
+
+		<Button
+			android:id="@+id/btn_read_info"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="读取设备信息"/>
+
+	</LinearLayout>
 
 </RelativeLayout> 
